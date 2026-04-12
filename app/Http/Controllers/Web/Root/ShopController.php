@@ -11,13 +11,16 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Repositories\ServiceRepository;
 use App\Repositories\StoreRepository;
+use App\Services\DeleteStoreService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 
 class ShopController extends Controller
 {
     public function __construct(
-        private StoreRepository $storeRepository
+        private StoreRepository $storeRepository,
+        private DeleteStoreService $deleteStoreService
     ) {}
 
     public function index()
@@ -161,5 +164,21 @@ class ShopController extends Controller
         $products = $store->products;
 
         return view('shop.product', compact('products', 'store'));
+    }
+
+    public function destroy(Store $store)
+    {
+        try {
+            $this->deleteStoreService->deleteStore($store);
+
+            return to_route('shop.index')->with('success', __('Shop deleted successfully'));
+        } catch (\Throwable $e) {
+            Log::error('Store cascade delete failed', [
+                'store_id' => $store->id,
+                'exception' => $e,
+            ]);
+
+            return back()->with('error', __('Could not delete shop. Please try again or contact support.'));
+        }
     }
 }

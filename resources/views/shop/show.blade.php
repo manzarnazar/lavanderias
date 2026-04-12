@@ -6,9 +6,21 @@
             <div class="title"><a href="{{ route('shop.index') }}">
                     {{ __('Shops') }}</a> / <strong>{{ $store->name }}</strong>
             </div>
-            <a href="{{ route('shop.index') }}" class="btn btn-secondary">
-                <i class="fa fa-arrow-left"></i> {{ __('Back') }}
-            </a>
+            <div class="d-flex align-items-center gap-2">
+                <a href="{{ route('shop.index') }}" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left"></i> {{ __('Back') }}
+                </a>
+                @can('shop.delete')
+                    <form action="{{ route('shop.delete', $store) }}" method="POST" class="d-inline"
+                        onsubmit="return confirm(@json(__('Are_you_sure?')));">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-trash"></i> {{ __('Delete') }}
+                        </button>
+                    </form>
+                @endcan
+            </div>
         </div>
 
         <div class="row">

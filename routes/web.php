@@ -313,6 +313,7 @@ Route::middleware(['auth', 'check_permission', 'role:root|admin'])->group(functi
         Route::get('/shops/{product}/approve', 'statusToggle')->name('shop.product.approve');
         Route::post('/shops/{store}/services-update', 'serviceUpdate')->name('shop.service.update');
         Route::get('/shops/{wallet}/transaction', 'transaction')->name('shop.transaction');
+        Route::delete('/shops/{store}', 'destroy')->name('shop.delete');
     });
 });
 

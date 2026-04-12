@@ -75,6 +75,17 @@
                             <a class="icons" href="{{ route('shop.show', $store->id) }}">
                                 <i class="fa fa-eye"></i>
                             </a>
+                            @can('shop.delete')
+                                <form action="{{ route('shop.delete', $store) }}" method="POST" class="icons d-inline"
+                                    onsubmit="return confirm(@json(__('Are_you_sure?')));">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-link text-white p-0 border-0"
+                                        title="{{ __('Delete') }}" style="line-height: inherit;">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            @endcan
                         </div>
                     </div>
                 </div>
