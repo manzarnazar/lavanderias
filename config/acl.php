@@ -100,10 +100,10 @@ return [
         'driverAssign' => ['root', 'store'],
         'driver.details' => ['root', 'store'],
 
-        'profile.index' => ['root', 'vendor'],
-        'profile.update' => ['root', 'vendor'],
-        'profile.edit' => ['root', 'vendor'],
-        'profile.change-password' => ['root', 'vendor'],
+        'profile.index' => ['root', 'vendor', 'store'],
+        'profile.update' => ['root', 'vendor', 'store'],
+        'profile.edit' => ['root', 'vendor', 'store'],
+        'profile.change-password' => ['root', 'vendor', 'store'],
 
         'schedule.index' => ['root', 'store'],
         'toggole.status.update' => ['root', 'store'],

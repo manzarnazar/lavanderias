@@ -35,16 +35,15 @@ class CheckPermission
 
         if (in_array($requestRoute, $allPermissions) || $userRole === 'root') {
             return $next($request);
-        }elseif($userRole === 'store'){
+        } elseif ($userRole === 'store') {
             $subscription = $user->store->subscriptions()->where('status', true)->first();
-            if ($appSetting->business_based_on==='subscription' && (!$subscription || $subscription->expired_at < date('Y-m-d'))) {
+            if ($appSetting->business_based_on === 'subscription' && (! $subscription || $subscription->expired_at < date('Y-m-d'))) {
                 return to_route('subscription.purchase.index')->with('error', 'Please purchase subscription');
             }
-        }
-        else{
 
             return back()->with('error', 'Sorry, You have no permission');
         }
 
+        return back()->with('error', 'Sorry, You have no permission');
     }
 }
