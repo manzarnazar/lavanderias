@@ -3,13 +3,19 @@
 namespace App\Http\Controllers\API\Driver;
 
 use App\Enums\DriverOrderStatus;
+use App\Enums\OrderStatus;
+use App\Enums\PaymentGateway;
+use App\Enums\PaymentStatus;
+use App\Events\OrderMailEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StatusUpdateRequest;
 use App\Http\Resources\RiderOrderDetailsResource;
 use App\Http\Resources\RiderOrderResource;
 use App\Models\DriverOrder;
 use App\Repositories\DriverOrderRepository;
+use App\Repositories\NotificationRepository;
 use App\Repositories\OrderRepository;
+use App\Services\NotificationServices;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -101,27 +107,54 @@ class OrderController extends Controller
     public function statusUpdate(StatusUpdateRequest $request)
     {
         $driverOrder = (new DriverOrderRepository())->query()->where('order_id', $request->order_id)->first();
+        $orderRepository = new OrderRepository();
 
         $nextStatus = 'Complete';
-        if($driverOrder->is_completed == false){
+        if ($driverOrder->is_completed == false) {
             $current = $this->getNextStatus($driverOrder->status->value);
 
             $driverOrder->update([
-                'status' => $current
+                'status' => $current,
             ]);
 
             $nextStatus = $this->getNextStatus($current);
 
-            if($current == DriverOrderStatus::DELIVERED->value){
+            if ($current == DriverOrderStatus::DELIVERED->value) {
                 $driverOrder->update(['is_completed' => true]);
+
+                $order = $driverOrder->order->fresh();
+                $previousStatus = $order->order_status->value;
+
+                $updates = ['order_status' => OrderStatus::DELIVERED->value];
+                if ($order->payment_type === PaymentGateway::CASH->value) {
+                    $updates['payment_status'] = PaymentStatus::PAID->value;
+                }
+                $order->update($updates);
+
+                if ($previousStatus !== OrderStatus::DELIVERED->value) {
+                    $order = $order->fresh();
+                    $orderRepository->creditWalletsForDeliveredOrder($order);
+
+                    if ($order->customer->devices->count()) {
+                        $devices = $order->customer->devices;
+                        $statusLabel = OrderStatus::DELIVERED->value;
+                        $message = "Hello {$order->customer->name}. Your order status is {$statusLabel}. OrderID: {$order->prefix}{$order->order_code}";
+                        $tokens = $devices->pluck('key')->toArray();
+                        $title = 'Order Status Update';
+                        (new NotificationServices())->sendNotification($message, $tokens, $title);
+                        (new NotificationRepository())->storeByRequest($order->customer->id, $message, $title);
+                    }
+
+                    OrderMailEvent::dispatch($order);
+                }
             }
         }
 
-        // OrderMailEvent::dispatch($order);
+        $driverOrder->load('order');
 
-        return $this->json("Order successfully!", [
-            'order' => RiderOrderDetailsResource::make($driverOrder->order),
-            'next_status' => $nextStatus
+        return $this->json('Order successfully!', [
+            'order' => RiderOrderDetailsResource::make($driverOrder->order->fresh()),
+            'next_status' => $nextStatus,
         ]);
     }
 }

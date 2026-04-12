@@ -12,8 +12,6 @@ use App\Http\Resources\SellerOrderResource;
 use App\Repositories\DeviceKeyRepository;
 use App\Repositories\NotificationRepository;
 use App\Repositories\OrderRepository;
-use App\Repositories\UserRepository;
-use App\Repositories\WalletRepository;
 use App\Services\NotificationServices;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -72,6 +70,7 @@ class OrderController extends Controller
     {
         $order = (new OrderRepository())->find($request->order_id);
 
+        $previousStatus = $order->order_status->value;
         $order->update(['order_status' => $request->order_status]);
 
         if ($request->order_status == OrderStatus::PENDING->value) {
@@ -90,14 +89,8 @@ class OrderController extends Controller
             (new NotificationRepository())->storeByRequest($order->customer->id, $message, $title);
         }
 
-        if ($order->order_status->value == OrderStatus::DELIVERED->value) {
-            $commissionCost = round(($order->payable_amount / 100) * $order->store->commission, 2);
-            $storeAmount = $order->payable_amount - $commissionCost;
-
-            (new WalletRepository())->updateCredit($order->store->user->wallet, $storeAmount, "Order Delivered from {$order->store->name}", $order->id, null, $order->store->id);
-
-            $rootUser = (new UserRepository())->query()->role('root')->first();
-            (new WalletRepository())->updateCredit($rootUser->wallet, $commissionCost, "Order Delivered from {$order->store->name}", $order->id);
+        if ($order->order_status->value == OrderStatus::DELIVERED->value && $previousStatus !== OrderStatus::DELIVERED->value) {
+            (new OrderRepository())->creditWalletsForDeliveredOrder($order);
         }
 
         OrderMailEvent::dispatch($order);

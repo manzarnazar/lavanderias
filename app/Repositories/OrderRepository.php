@@ -405,6 +405,20 @@ class OrderRepository extends Repository
         return $orders->latest()->get();
     }
 
+    /**
+     * Commission split for a delivered order. Call only when transitioning to Delivered for the first time.
+     */
+    public function creditWalletsForDeliveredOrder(Order $order): void
+    {
+        $commissionCost = round(($order->payable_amount / 100) * $order->store->commission, 2);
+        $storeAmount = $order->payable_amount - $commissionCost;
+
+        (new WalletRepository())->updateCredit($order->store->user->wallet, $storeAmount, "Order Delivered from {$order->store->name}", $order->id, null, $order->store->id);
+
+        $rootUser = (new UserRepository())->query()->role('root')->first();
+        (new WalletRepository())->updateCredit($rootUser->wallet, $commissionCost, "Order Delivered from {$order->store->name}", $order->id);
+    }
+
     public function statusUpdateByRequest(Order $order, $status): Order
     {
         $order->update([
