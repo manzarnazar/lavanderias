@@ -125,10 +125,9 @@
                                                 </small>
                                             </td>
                                             <td class="px-2">
-                                                @if ($driverOrder->is_accept)
-                                                    <span class="text-success">Accepted</span>
-                                                @else
-                                                    <span class="text-danger">Pending</span>
+                                                {{ $driverOrder->order->order_status->value }}
+                                                @if (! $driverOrder->is_accept)
+                                                    <br><small class="text-danger">Driver pending accept</small>
                                                 @endif
                                             </td>
                                             <td class="px-2 text-center">{{ $driverOrder->order->total_amount - $driverOrder->order->discount }}</td>

@@ -104,6 +104,20 @@ class OrderController extends Controller
         };
     }
 
+    /**
+     * Keep customers / admin order_status aligned with driver milestones (before Delivered).
+     */
+    private function orderStatusForDriverMilestone(string $driverStatus): ?string
+    {
+        return match ($driverStatus) {
+            DriverOrderStatus::PICKED_UP->value => OrderStatus::PICKED_UP->value,
+            DriverOrderStatus::DROPED_IN_STORE->value,
+            DriverOrderStatus::TO_DELIVER->value => OrderStatus::PROCESSING->value,
+            DriverOrderStatus::START_DELIVERING->value => OrderStatus::ON_GOING->value,
+            default => null,
+        };
+    }
+
     public function statusUpdate(StatusUpdateRequest $request)
     {
         $driverOrder = (new DriverOrderRepository())->query()->where('order_id', $request->order_id)->first();
@@ -118,6 +132,13 @@ class OrderController extends Controller
             ]);
 
             $nextStatus = $this->getNextStatus($current);
+
+            if ($current !== DriverOrderStatus::DELIVERED->value) {
+                $syncStatus = $this->orderStatusForDriverMilestone($current);
+                if ($syncStatus !== null) {
+                    $driverOrder->order->update(['order_status' => $syncStatus]);
+                }
+            }
 
             if ($current == DriverOrderStatus::DELIVERED->value) {
                 $driverOrder->update(['is_completed' => true]);
