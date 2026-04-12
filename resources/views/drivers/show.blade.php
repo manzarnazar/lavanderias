@@ -126,7 +126,6 @@
                                             </td>
                                             <td class="px-2">
                                                 {{ $driverOrder->order->order_status->value }}
-                                             
                                             </td>
                                             <td class="px-2 text-center">{{ $driverOrder->order->total_amount - $driverOrder->order->discount }}</td>
 
