@@ -43,10 +43,20 @@ class OrderController extends Controller
             ->when($request->order_status, function ($query) use ($request) {
                     $query->where('status', $request->order_status);
             })
-            ->when($date, function ($query) use ($date) {
-                $query->whereHas('order', function ($order) use ($date) {
-                    $order->where('pick_date', $date)->orWhere('delivery_date', $date);
-                });
+            ->when($date, function ($query) use ($date, $request) {
+                $completedFlag = $request->is_complated;
+                $isCompletedRequest = $completedFlag === 1 || $completedFlag === '1' || $completedFlag === true;
+                $deliveredCompletedToday = $request->order_status === DriverOrderStatus::DELIVERED->value
+                    && $isCompletedRequest;
+
+                if ($deliveredCompletedToday) {
+                    // Actual completion time — scheduled pick/delivery dates often differ from "done today"
+                    $query->whereDate((new DriverOrder())->getTable() . '.updated_at', $date);
+                } else {
+                    $query->whereHas('order', function ($order) use ($date) {
+                        $order->where('pick_date', $date)->orWhere('delivery_date', $date);
+                    });
+                }
             })
             ->when($search, function ($query) use ($search) {
                 $query->whereHas('order', function ($order) use ($search) {
