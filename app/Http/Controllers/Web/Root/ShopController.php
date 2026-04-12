@@ -175,6 +175,7 @@ class ShopController extends Controller
         } catch (\Throwable $e) {
             Log::error('Store cascade delete failed', [
                 'store_id' => $store->id,
+                'message' => $e->getMessage(),
                 'exception' => $e,
             ]);
 

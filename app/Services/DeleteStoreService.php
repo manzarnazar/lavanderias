@@ -26,6 +26,7 @@ use App\Models\User;
 use App\Models\Variant;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DeleteStoreService
 {
@@ -62,12 +63,14 @@ class DeleteStoreService
             $store->services()->detach();
             DB::table('store_users')->where('store_id', $store->id)->delete();
             DB::table('favourite_stores')->where('store_id', $store->id)->delete();
-            DB::table('favourite_store_user')->where('store_id', $store->id)->delete();
+            if (Schema::hasTable('favourite_store_user')) {
+                DB::table('favourite_store_user')->where('store_id', $store->id)->delete();
+            }
 
             StorePaymentGateway::where('store_id', $store->id)->delete();
             Transaction::where('store_id', $store->id)->delete();
 
-            Address::where('store_id', $store->id)->delete();
+            Address::withTrashed()->where('store_id', $store->id)->forceDelete();
 
             $driverIds = Driver::where('store_id', $store->id)->pluck('id');
             if ($driverIds->isNotEmpty()) {
