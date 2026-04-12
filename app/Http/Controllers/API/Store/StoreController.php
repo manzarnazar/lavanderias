@@ -26,7 +26,23 @@ class StoreController extends Controller
             'longitude' => 'required',
         ]);
 
-        $stores = $this->storeRepo->getByNearest($request);
+        // Same pipeline as website `nearest-stores` (StoreRepository::getNearestStores).
+        $nearestRows = $this->storeRepo->getNearestStores($request);
+        $stores = collect($nearestRows)->pluck('store');
+
+        if ($request->filled('service_id')) {
+            $serviceId = (int) $request->service_id;
+            $stores = $stores->filter(
+                fn ($store) => $store->services()->where('services.id', $serviceId)->exists()
+            )->values();
+        }
+
+        if ($request->filled('search') && strlen($request->search) >= 2) {
+            $needle = strtolower($request->search);
+            $stores = $stores->filter(
+                fn ($store) => str_contains(strtolower($store->name), $needle)
+            )->values();
+        }
 
         return $this->json('Store list', [
             'stores' => StoreResource::collection($stores),
