@@ -30,9 +30,11 @@ class ShopRequest extends FormRequest
         }
 
         $commitionRequired = 'required';
-        if(route('seller.register')){
+        if (route('seller.register')) {
             $commitionRequired = 'nullable';
         }
+
+        $latLngRequired = \request()->isMethod('post') ? 'required' : 'nullable';
 
         return [
             'first_name' => 'required|string',
@@ -53,6 +55,8 @@ class ShopRequest extends FormRequest
             'min_order_amount' => 'nullable|numeric|min:0',
             'delivery_charge' => 'nullable|nullable|min:0',
             'password' => 'nullable|confirmed|min:6',
+            'latitude' => [$latLngRequired, 'numeric', 'between:-90,90'],
+            'longitude' => [$latLngRequired, 'numeric', 'between:-180,180'],
 
         ];
     }

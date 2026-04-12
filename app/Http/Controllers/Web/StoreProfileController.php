@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Repositories\AddressRepository;
 use App\Repositories\StoreRepository;
 use App\Repositories\UserRepository;
-use GuzzleHttp\Client;
+use App\Services\StoreLocationSyncService;
 use Illuminate\Http\Request;
 
 class StoreProfileController extends Controller
@@ -65,49 +65,16 @@ class StoreProfileController extends Controller
     }
 
 
-    public function location(Request $request)
+    public function location(Request $request, StoreLocationSyncService $storeLocationSync)
     {
         $request->validate([
             'lat' => 'required',
             'lng' => 'required',
         ]);
 
-
-        $url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='
-            . $request->lat . ',' . $request->lng
-            . '&key=' . mapApiKey();
-
-        $client = new \GuzzleHttp\Client(['verify' => false]);
-
-
-        $apiResponse = $client->get($url)->getBody()->getContents();
-        $results = json_decode($apiResponse)->results ?? [];
-
         $store = auth()->user()->store;
 
-
-        $store->update([
-            'latitude' => $request->lat,
-            'longitude' => $request->lng,
-        ]);
-
-
-        if (!empty($results)) {
-            $index = isset($results[4]) ? 4 : 0;
-
-            $request['address_name'] = $results[$index]->formatted_address ?? null;
-            $request['road_no'] = $results[$index]->address_components[0]->long_name ?? null;
-            $request['area'] = $results[$index]->address_components[1]->long_name ?? null;
-        } else {
-            $request['address_name'] = null;
-            $request['road_no'] = null;
-            $request['area'] = null;
-        }
-
-        $request['latitude'] = $request->lat;
-        $request['longitude'] = $request->lng;
-
-        (new AddressRepository())->updateOrCreate($request, $store);
+        $storeLocationSync->syncStoreCoordinates($store, $request->lat, $request->lng);
 
         return back()->with('success', 'Location is updated successfully.');
     }

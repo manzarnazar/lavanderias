@@ -10,6 +10,7 @@ use App\Models\OrderSchedule;
 use App\Models\Store;
 use App\Models\StoreSubscription;
 use App\Models\Wallet;
+use App\Services\StoreLocationSyncService;
 use Spatie\Permission\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -42,8 +43,7 @@ class StoreRepository extends Repository
         $bannerId = $this->uploadImage($request, 'banner');
         $shopSignatureId = $this->uploadImage($request, 'shop_signature');
 
-
-        return $this->create([
+        $store = $this->create([
             'shop_owner' => $user->id,
             'logo_id' => $logoId,
             'banner_id' => $bannerId,
@@ -55,6 +55,14 @@ class StoreRepository extends Repository
             'status' => true,
             'prifix' => $request->prefix ?? 'IM',
         ]);
+
+        app(StoreLocationSyncService::class)->syncStoreCoordinates(
+            $store,
+            $request->latitude,
+            $request->longitude
+        );
+
+        return $store;
     }
     public function storeByWeb($request, $user)
     {
