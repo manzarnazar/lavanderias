@@ -76,13 +76,14 @@
                                 <i class="fa fa-eye"></i>
                             </a>
                             @can('shop.delete')
-                                <form action="{{ route('shop.delete', $store) }}" method="POST" class="icons d-inline"
+                                <form action="{{ route('shop.delete', $store) }}" method="POST"
+                                    class="icons shop-delete-form d-inline"
                                     onsubmit="return confirm(@json(__('Are_you_sure?')));">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-link text-white p-0 border-0"
-                                        title="{{ __('Delete') }}" style="line-height: inherit;">
-                                        <i class="fa fa-trash"></i>
+                                    <button type="submit" class="shop-delete-btn" title="{{ __('Delete') }}">
+                                        <img src="{{ asset('images/icons/delete-icon.svg') }}" alt="" width="22" height="22"
+                                            class="shop-delete-icon" />
                                     </button>
                                 </form>
                             @endcan
@@ -93,6 +94,31 @@
         </div>
     </div>
     <style>
+        .overlay > .shop-delete-form {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
 
+        .overlay .shop-delete-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            line-height: 0;
+        }
+
+        .overlay .shop-delete-icon {
+            display: block;
+            pointer-events: none;
+        }
     </style>
 @endsection
