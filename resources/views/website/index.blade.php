@@ -9,6 +9,16 @@
         .qr-code {
             width: 6rem;
         }
+        .premium-service-card .icon_labels {
+            background: #dbeafe !important;
+        }
+        .premium-service-card:hover .icon_labels {
+            background: #bfdbfe !important;
+        }
+        .premium-service-card .getLocationBtn:hover {
+            background: #006CBA !important;
+            border-color: #006CBA !important;
+        }
     </style>
 
     <!-- header section -->
@@ -181,7 +191,7 @@
 
             @foreach ($services as $service)
                 <div
-                    class="flex flex-col p-4 rounded-3xl transition-all duration-200 outline outline-transparent outline-1 hover:outline-offset-2 hover:outline-mint-600 hover:shadow-xl hover:shadow-mint-100 bg-white shadow-sm">
+                    class="premium-service-card flex flex-col p-4 rounded-3xl transition-all duration-200 outline outline-transparent outline-1 hover:outline-offset-2 hover:outline-mint-600 hover:shadow-xl hover:shadow-mint-100 bg-white shadow-sm">
                     <div>
                         <div class="icon_labels">
                             <img src="{{ asset($service->thumbnailPath) }}" alt="">
