@@ -9,6 +9,28 @@
       .menu_link_active {
           color: #006CBA;
       }
+
+      .nav-auth-buttons .btn_solid {
+          background: #006CBA !important;
+          border: 1.5px solid #006CBA !important;
+          color: #ffffff !important;
+      }
+
+      .nav-auth-buttons .btn_solid:hover {
+          background: #005AA0 !important;
+          border-color: #005AA0 !important;
+      }
+
+      .nav-auth-buttons .btn_outline {
+          background: #ffffff !important;
+          border: 1.5px solid #006CBA !important;
+          color: #006CBA !important;
+      }
+
+      .nav-auth-buttons .btn_outline:hover {
+          background: #006CBA !important;
+          color: #ffffff !important;
+      }
   </style>
 
   <nav class="bg-white sticky top-0 py-4 md:py-6 z-40 ">
@@ -141,7 +163,7 @@
                   </a>
               </div>
           @else
-              <div class="hidden lg:flex justify-center items-center gap-4">
+              <div class="nav-auth-buttons hidden lg:flex justify-center items-center gap-4">
                   <a class="btn_solid cursor-pointer" href="{{ route('sign-in') }}">
                       <p>Sign In</p>
 
