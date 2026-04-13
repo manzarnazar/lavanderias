@@ -2,13 +2,27 @@
 @section('content')
     <style>
         .service-item.active {
-            background: #f0fdfa;
+            background: #eff6ff;
             border-radius: 6px;
+        }
+        .rs-breadcrumb-area {
+            background-color: #005AA0 !important;
+        }
+        .rs-services-box:hover {
+            border-color: #006CBA !important;
+        }
+        .rs-services-box:hover .getLocationBtn {
+            background: #006CBA !important;
+            border-color: #006CBA !important;
+            color: #ffffff !important;
+        }
+        .rs-services-box:hover .getLocationBtn img {
+            filter: brightness(0) invert(1);
         }
     </style>
     <!-- breadcrumb -->
     <section
-        class="rs-breadcrumb-area bg-[#1A7058] h-[260px] w-full bg-[url('../assets/images/header/breadcrumb.png')] bg-cover bg-center flex flex-col items-center justify-center text-center">
+        class="rs-breadcrumb-area bg-[#005AA0] h-[260px] w-full bg-[url('../assets/images/header/breadcrumb.png')] bg-cover bg-center flex flex-col items-center justify-center text-center">
         <div class="rs-breadcrumb-content">
             <h1
                 class="rs-breadcrumb-title mb-[5px] sm:mb-[10px] text-[26px] md:text-[30px]  md:text-4xl text-white font-semibold leading-[140%]">

@@ -15,8 +15,8 @@
             </p>
         </div>
         <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-            <button class="btn_solid_white_lg getLocationBtn">
-                <p>Book Now</p>
+            <button class="btn_solid_white_lg getLocationBtn" style="color: #006CBA !important;">
+                <p style="color: #006CBA !important;">Book Now</p>
 
                 <img src="../assets/icons/arrow-left-green.svg" alt="">
             </button>
