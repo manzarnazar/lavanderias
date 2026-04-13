@@ -2,8 +2,11 @@
 @section('content')
     <style>
         .service-item.active {
-            background: #eff6ff;
-            border-radius: 6px;
+            background: #006CBA !important;
+            border-radius: 12px;
+        }
+        .service-item.active .service-filter {
+            color: #ffffff !important;
         }
         .rs-breadcrumb-area {
             background-color: #005AA0 !important;

@@ -181,17 +181,18 @@
                                         @else
                                             <input type="hidden" name="store_slug" value="{{ $store['store']->slug }}">
                                         @endif
-                                        <button type="submit" <button type="submit"
-                                            class="flex items-center justify-center gap-[10px]
+                                        <button type="submit"
+                                            class="getLocationBtn flex items-center justify-center gap-[10px]
                                                 h-[48px] w-[332px]
-                                                bg-white text-mint-600
+                                                bg-mint-600 text-white
                                                 text-xs font-semibold leading-[133%]
-                                                border border-neutral-100
+                                                border border-mint-600
                                                 rounded-xl ml-auto
-                                                hover:bg-mint-600 hover:text-white
+                                                hover:bg-mint-700 hover:border-mint-700
                                                 transition-colors duration-200">
                                             Book Now
-                                            <img src="../assets/icons/green-right-arrow.svg" alt="">
+                                            <img src="../assets/icons/green-right-arrow.svg" alt=""
+                                                class="brightness-0 invert">
                                         </button>
 
 
