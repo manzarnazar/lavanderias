@@ -484,7 +484,7 @@
 
     <section class="bg-cover bg-no-repeat relative py-[50px] md:py-[100px]"
         style="background-image: url('./assets/images/stores-network/bg.png');">
-        <div class="absolute top-0 right-0 w-full h-full z-0 bg-[#32d3a0]/5"></div>
+        <div class="absolute top-0 right-0 w-full h-full z-0 bg-[#006CBA]/5"></div>
         <section
             class=" max-w-2lg mx-auto px-4 xl-1:px-0 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-[70px]">
             <div class="flex flex-col justify-center">
@@ -621,7 +621,7 @@
                 <p>{{ $takeWith->sub_title }}</p>
             </header>
             <div class="rounded-[44px] grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 overflow-hidden"
-                style="background: linear-gradient(to right, #32d3a0 0%, #32d3a0 6.25%, #33d3a0 12.5%, #36d3a0 18.75%, #3bd49f 25%, #43d59e 31.25%, #4cd69c 37.5%, #58d79a 43.75%, #65d997 50%, #73dc93 56.25%, #82df8e 62.5%, #92e387 68.75%, #a2e77f 75%, #b3ec74 81.25%, #c5f265 87.5%, #d7f84f 93.75%, #e9ff26 100%);">
+                style="background: linear-gradient(to right, #006CBA 0%, #006CBA 6.25%, #33d3a0 12.5%, #36d3a0 18.75%, #3bd49f 25%, #43d59e 31.25%, #4cd69c 37.5%, #58d79a 43.75%, #65d997 50%, #73dc93 56.25%, #82df8e 62.5%, #92e387 68.75%, #a2e77f 75%, #b3ec74 81.25%, #c5f265 87.5%, #d7f84f 93.75%, #e9ff26 100%);">
                 <div class=" p-5 ">
                     <div class="h-full w-full p-3 md:p-6 rounded-3xl flex flex-col gap-6 justify-between bg-white">
                         <div class="flex justify-start items-center gap-2 md:gap-4">

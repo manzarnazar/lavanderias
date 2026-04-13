@@ -203,7 +203,7 @@
                                         <span
                                             class="hidden sm:inline-flex justify-start items-center gap-2 bg-mint-50 px-2 py-1 rounded-full">
                                             <img src="../assets/icons/star.svg" alt="">
-                                            <p class="text-xs text-left text-[#32d3a0]">Default</p>
+                                            <p class="text-xs text-left text-[#006CBA]">Default</p>
                                         </span>
                                     @endif
                                 </div>

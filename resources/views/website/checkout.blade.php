@@ -574,7 +574,7 @@
                         <p class="text-xs md:text-sm font-medium text-neutral-500">${card.name}</p>
                         <p class="text-xs md:text-sm text-left text-neutral-500">${card.qty} item</p>
                     </div>
-                    <p class="text-[13px] font-medium text-right text-[#32d3a0]">${currency}${(card.price * card.qty).toFixed(2)}</p>
+                    <p class="text-[13px] font-medium text-right text-[#006CBA]">${currency}${(card.price * card.qty).toFixed(2)}</p>
                 `;
                 selectedCardDiv.appendChild(selectedCardElement);
             });

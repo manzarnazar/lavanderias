@@ -9,7 +9,7 @@
             transform: translateX(-50%) rotate(0deg);
             width: 2px;
             height: 50px;
-            background: linear-gradient(180deg, #32D3A0 0%, transparent 100%);
+            background: linear-gradient(180deg, #006CBA 0%, transparent 100%);
         }
 
         @media (max-width: 1092px) {

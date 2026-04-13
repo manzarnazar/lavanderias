@@ -108,7 +108,7 @@
         <!-- still have questions -->
         <section class="max-w-2lg mx-auto px-4 xl-1:px-0 py-[30px] md:py-[60px] relative bg-cover bg-no-repeat min-h-52"
             style="background-image: url('../assets/images/stores-network/bg.png');">
-            <div class="absolute top-0 right-0 w-full h-full z-0 bg-[#32d3a0]/5"></div>
+            <div class="absolute top-0 right-0 w-full h-full z-0 bg-[#006CBA]/5"></div>
             <div class="relative z-10 p-4 flex justify-center items-center flex-col gap-[30px]">
                 <div class="space-y-[10px]">
                     <p class="text-2xl md:text-[32px] font-semibold text-center text-gray-900">
