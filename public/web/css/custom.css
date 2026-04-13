@@ -6,7 +6,7 @@ th {
 
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
-    color: #00c2cb;
+    color: #006CBA;
 }
 
 .switch {
@@ -47,11 +47,11 @@ th {
 }
 
 input:checked+.slider {
-    background-color: #00a85b;
+    background-color: #006CBA;
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #00a85b;
+    box-shadow: 0 0 1px #006CBA;
 }
 
 input:checked+.slider:before {
