@@ -1,3 +1,16 @@
+  <style>
+      .menu_link {
+          color: #4b5563;
+          font-weight: 500;
+          transition: color .2s ease;
+      }
+
+      .menu_link:hover,
+      .menu_link_active {
+          color: #006CBA;
+      }
+  </style>
+
   <nav class="bg-white sticky top-0 py-4 md:py-6 z-40 ">
       <section class="max-w-2lg mx-auto px-4 xl:px-0 flex items-center justify-between">
           <a href="{{ route('home') }}" class="w-auto  md:w-auto md:h-8 inline-block" style="height: 3rem">

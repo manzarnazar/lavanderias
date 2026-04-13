@@ -38,9 +38,6 @@
                 $footerLogoPath = Str::startsWith($footer->footer_logo, 'assets/')
                     ? asset($footer->footer_logo)
                     : asset('storage/' . $footer->footer_logo);
-                $footerBackgroundPath = Str::startsWith($footer->footer_background, 'assets/')
-                    ? asset($footer->footer_background)
-                    : asset('storage/' . $footer->footer_background);
             @endphp
 
             <!-- links section -->
@@ -132,11 +129,6 @@
                     </div>
                 </div>
 
-            </div>
-
-
-            <div class="relative z-0 pb-[30px] pt-[50px]">
-                <img src="{{$footerBackgroundPath}}" alt="">
             </div>
 
 

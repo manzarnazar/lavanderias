@@ -42,7 +42,7 @@ class DashboardController extends Controller
             $services = $store->services;
             $orders = $store->orders;
         }
-        if ($user->hasRole('root|admin')) {
+        if ($user->hasAnyRole(['root', 'admin'])) {
 
             return view('dashboard.root', compact(
                 'customers', 'services', 'products', 'revenues', 'confirmOrder', 'completeOrder', 'pendingOrder', 'onPregressOrder', 'cancelledOrder', 'shop'
