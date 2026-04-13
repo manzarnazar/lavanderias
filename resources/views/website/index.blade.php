@@ -482,6 +482,21 @@
             style="background-image: url('{{ asset($backgroundPath) }}');"></div>
     </section>
 
+    <style>
+        .join-network-card .icon_labels {
+            background: #dbeafe !important;
+        }
+        .join-network-card .icon_labels img {
+            /* Force blue icon tint even if uploaded assets are green */
+            filter: brightness(0) saturate(100%) invert(25%) sepia(95%) saturate(2139%) hue-rotate(194deg) brightness(93%) contrast(101%);
+        }
+        .join-network-card:hover .icon_labels {
+            background: #60a5fa !important;
+        }
+        .join-network-card:hover .icon_labels img {
+            filter: brightness(0) invert(1) !important;
+        }
+    </style>
     <section class="bg-cover bg-no-repeat relative py-[50px] md:py-[100px]"
         style="background-image: url('./assets/images/stores-network/bg.png');">
         <div class="absolute top-0 right-0 w-full h-full z-0 bg-[#006CBA]/5"></div>
@@ -532,7 +547,7 @@
                                 }
                             @endphp
                             <div
-                                class="flex flex-col p-4 rounded-3xl transition-all duration-200 group  shadow-sm gap-[15px] h-fit bg-white hover:bg-mint-700">
+                                class="join-network-card flex flex-col p-4 rounded-3xl transition-all duration-200 group  shadow-sm gap-[15px] h-fit bg-white hover:bg-mint-700">
                                 <div>
                                     <div class="icon_labels group-hover:bg-mint-300">
                                         <img src="{{ $imgPath }}" alt=""
@@ -561,7 +576,7 @@
                                 }
                             @endphp
                             <div
-                                class="flex flex-col p-4 rounded-3xl transition-all duration-200 group  shadow-sm gap-[15px] h-fit bg-white hover:bg-mint-700">
+                                class="join-network-card flex flex-col p-4 rounded-3xl transition-all duration-200 group  shadow-sm gap-[15px] h-fit bg-white hover:bg-mint-700">
                                 <div>
                                     <div class="icon_labels group-hover:bg-mint-300">
                                         <img src="{{ $imgPath }}"
@@ -594,7 +609,7 @@
                         }
                     @endphp
                     <div
-                        class="flex flex-col p-4 rounded-3xl transition-all duration-200 group  shadow-sm gap-[15px] h-fit bg-white hover:bg-mint-700">
+                        class="join-network-card flex flex-col p-4 rounded-3xl transition-all duration-200 group  shadow-sm gap-[15px] h-fit bg-white hover:bg-mint-700">
                         <div>
                             <div class="icon_labels group-hover:bg-mint-300">
                                 <img src="{{ $imgPath }}" alt=""
