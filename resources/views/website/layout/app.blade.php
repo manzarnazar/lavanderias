@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/service.css">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ $appSetting?->websiteFaviconPath ?? './assets/logo/Logo.svg' }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ $appSetting?->websiteFaviconPath ?? './assets/logo/lav_logo.png' }}">
 
     <link rel="stylesheet" href="../css/home.css">
 

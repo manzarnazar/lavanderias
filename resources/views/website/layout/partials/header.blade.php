@@ -1,9 +1,9 @@
   <nav class="bg-white sticky top-0 py-4 md:py-6 z-40 ">
       <section class="max-w-2lg mx-auto px-4 xl:px-0 flex items-center justify-between">
           <a href="{{ route('home') }}" class="w-auto  md:w-auto md:h-8 inline-block" style="height: 3rem">
-              <img src="{{ $appSetting?->websiteLogoPath ?? './assets/logo/Logo.svg' }}" alt=""
+              <img src="{{ $appSetting?->websiteLogoPath ?? './assets/logo/lav_logo.png' }}" alt=""
                   class="h-full w-full">
-                  {{-- <img src="{{ './assets/logo/Logo.svg' }}" alt=""
+                  {{-- <img src="{{ './assets/logo/lav_logo.png' }}" alt=""
                   class="h-full w-full"> --}}
           </a>
 

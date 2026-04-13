@@ -180,7 +180,7 @@ class WebSettingTableSeeder extends Seeder
                         'sub_title' => 'Download our mobile app for exclusive features and a seamless laundry experience on the go.',
                         'take_info' => [
                             [
-                                'icon' => 'assets/logo/footer-logo.svg',
+                                'icon' => 'assets/logo/lav_logo.png',
                                 'title' => 'Your Laundry, Just a Tap Away',
                                 'sub_title' => 'Everything you need in your pocket',
                             ],
@@ -247,7 +247,7 @@ class WebSettingTableSeeder extends Seeder
                 WebSetting::create([
                     'key' => $setting->value,
                     'value' => json_encode([
-                        'footer_logo' => 'assets/logo/Logo.png',
+                        'footer_logo' => 'assets/logo/lav_logo.png',
                         'footer_background' => 'assets/images/footer/laundry.svg',
                         'footer_title' => 'Elevate Your Business with Innovative<br />Web, App, and Software Solutions. Partner for Excellence in Tech',
                         'contact_us' => [

@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/sign-in.css">
     <link rel="shortcut icon" type="image/x-icon"
-        href="{{ $appSetting?->websiteFaviconPath ?? './assets/logo/Logo.svg' }}">
+        href="{{ $appSetting?->websiteFaviconPath ?? './assets/logo/lav_logo.png' }}">
 
 
 </head>
@@ -49,9 +49,9 @@
                                     class="logo w-[70px] h-[70px] md:w-[86px] md:h-[86px] bg-white rounded-lg md:rounded-2xl text-center flex items-center justify-center mb-4 md:mb-[30px]">
                                     <a href="{{ route('home') }}" class="w-auto  md:w-auto md:h-8 inline-block"
                                         style="height: 3rem">
-                                        <img src="{{ $appSetting?->websiteFaviconPath ?? './assets/logo/Logo.svg' }}"
+                                        <img src="{{ $appSetting?->websiteFaviconPath ?? './assets/logo/lav_logo.png' }}"
                                             alt="" class="h-full w-full">
-                                        {{-- <img src="{{ './assets/logo/Logo.svg' }}" alt=""
+                                        {{-- <img src="{{ './assets/logo/lav_logo.png' }}" alt=""
                   class="h-full w-full"> --}}
                                     </a>
                                 </div>

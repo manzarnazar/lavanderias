@@ -20,11 +20,7 @@ class AppSetting extends Model
 
     public function getWebsiteLogoPathAttribute(): string
     {
-        if ($this->websiteLogo && Storage::exists($this->websiteLogo->src)) {
-            return Storage::url($this->websiteLogo->src);
-        }
-
-        return asset('assets/logo/Logo.svg');
+        return asset('assets/logo/lav_logo.png');
     }
 
     public function websiteFavicon(): BelongsTo
@@ -34,11 +30,7 @@ class AppSetting extends Model
 
     public function getWebsiteFaviconPathAttribute(): string
     {
-        if ($this->websiteFavicon && Storage::exists($this->websiteFavicon->src)) {
-            return Storage::url($this->websiteFavicon->src);
-        }
-
-        return asset('assets/logo/readylogo.png');
+        return asset('assets/logo/lav_logo.png');
     }
 
     public function signature()

@@ -214,7 +214,7 @@
 
     <div class="logo-sectioon">
         <div class="logo">
-            <img class="white-filter" src="{{ $appSetting?->websiteLogoPath ?? asset('images/logo-white.png') }}"
+            <img class="white-filter" src="{{ $appSetting?->websiteLogoPath ?? asset('assets/logo/lav_logo.png') }}"
                 alt="logo">
 
         </div>

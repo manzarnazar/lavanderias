@@ -16,9 +16,9 @@ tailwind.config = {
                 'mint-200': 'var(--color-mint-200)',
                 'mint-300': 'var(--color-mint-300)',
                 'mint-400': 'var(--color-mint-400)',
-                'mint-500': 'var(--color-mint-500)',
-                'mint-600': 'var(--color-mint-600)',
-                'mint-700': 'var(--color-mint-700)',
+                'mint-500': '#1A7FCF',
+                'mint-600': '#006CBA',
+                'mint-700': '#005AA0',
                 'mint-800': 'var(--color-mint-800)',
                 'mint-900': 'var(--color-mint-900)',
 

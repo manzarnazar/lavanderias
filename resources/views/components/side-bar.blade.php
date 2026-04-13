@@ -15,9 +15,9 @@
         <a class="navbar-brand navbar_header position-sticky top-0 left-0 " href="{{ route('root') }}">
             @role('store')
                 <img src="{{ auth()->user()->store->logo?->file ?? asset('web/web-logo.png') }}" class="navbar-brand-img">
-                {{-- <img src="{{ asset('web/main-logo.png') }}" class="navbar-brand-img"> --}}
+                {{-- <img src="{{ asset('assets/logo/lav_logo.png') }}" class="navbar-brand-img"> --}}
             @else
-                {{-- <img src="{{ asset('web/main-logo.png') }}" class="navbar-brand-img"> --}}
+                {{-- <img src="{{ asset('assets/logo/lav_logo.png') }}" class="navbar-brand-img"> --}}
                 <img src="{{ $appSetting->websiteLogoPath ?? asset('web/web-logo.png') }}" class="navbar-brand-img "
                     alt="Admin Logo">
             @endrole

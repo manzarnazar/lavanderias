@@ -2927,15 +2927,15 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    border-color: #28c593;
-    background-color: #28c593;
+    border-color: #006CBA;
+    background-color: #006CBA;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 
 .btn-primary:hover {
     color: #fff;
-    border-color: #1ba77a;
-    background-color: #1ba77a;
+    border-color: #005AA0;
+    background-color: #005AA0;
 }
 
 .btn-primary:focus,

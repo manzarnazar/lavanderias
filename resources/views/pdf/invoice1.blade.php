@@ -215,7 +215,7 @@
     <div class="logo-sectioon">
         <div class="logo">
             @if (app()->environment('local'))
-            <img class="white-filter" src="./images/logo-white.png" alt="logo">
+            <img class="white-filter" src="./assets/logo/lav_logo.png" alt="logo">
             @else
                 <img class="white-filter" src="{{ $store?->logoPath }}" alt="logo">
             @endif

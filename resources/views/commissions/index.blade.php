@@ -164,11 +164,11 @@
         height: 40px;
         object-fit: cover;
         border-radius: 100%;
-        border: 1px solid #28c593;
+        border: 1px solid #006CBA;
     }
 
     .client_payment_box.selected {
-        border: 1px solid #28c593 !important;
+        border: 1px solid #006CBA !important;
     }
 </style>
 @push('scripts')

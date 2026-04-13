@@ -104,7 +104,7 @@
                     </div>
 
                     @if (config('app.env') == 'local')
-                        <div class=" p-2 rounded credential-box" style="border: 1px solid #28c593;">
+                        <div class=" p-2 rounded credential-box" style="border: 1px solid #006CBA;">
                             <div class="title" style="border-bottom: 1px solid #f4ebeb">Admin Credentials</div>
 
 
@@ -125,7 +125,7 @@
                             </div>
                         </div>
 
-                        <div class="p-2 rounded mt-2 credential-box" style="border: 1px solid #28c593;">
+                        <div class="p-2 rounded mt-2 credential-box" style="border: 1px solid #006CBA;">
                             <div class="title" style="border-bottom: 1px solid #f4ebeb">Shop Credentials</div>
                             <div class="d-flex justify-content-between">
                                 <div style="font-size: 12px">
@@ -147,7 +147,7 @@
 
                     <style>
                         .bgBlue {
-                            background: #28c593;
+                            background: #006CBA;
                             color: #fff !important;
                         }
                     </style>
