@@ -20,7 +20,6 @@ class LoginController extends Controller
 
     public function login(Request $loginRequest)
     {
-        
         $user = $this->isAuthenticate($loginRequest);
         $loginRequest->only('email', 'password');
 
@@ -31,6 +30,7 @@ class LoginController extends Controller
         }
 
         Auth::login($user);
+        $loginRequest->session()->regenerate();
 
         return redirect()->route('root');
     }
@@ -48,8 +48,9 @@ class LoginController extends Controller
 
     public function logout()
     {
-        $user = auth()->user();
-        Auth::logout($user);
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
 
         return redirect()->route('login');
     }
