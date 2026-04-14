@@ -8,8 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Fav icon -->
-    <link rel="icon" type="image/png" sizes="16x16"
-      href="{{ $appSetting?->websiteFaviconPath ?? asset('web/fav-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/logo/lav_icon.png') }}">
 
     <!-- custome css -->
     <link rel="stylesheet" href="{{ asset('web/css/login.css') }}">
@@ -57,9 +56,8 @@
         <form role="form" class="pui-form pt-md-5" id="loginform" method="POST" action="{{ route('login') }}"> @csrf
             <div class="card loginCard">
                 <div class="logo-section">
-                    <img src="{{ $appSetting?->websiteLogoPath ?? asset('web/logo.png') }}" alt=""
-                        width="100%">
-
+                    <img src="{{ asset('assets/logo/lav_icon.png') }}" alt="{{ config('app.name') }}" width="100%"
+                        height="100%" style="object-fit: contain;">
                 </div>
                 <div class="card-body">
                     <div class="page-content text-center">
